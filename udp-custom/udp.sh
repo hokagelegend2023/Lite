@@ -10,8 +10,6 @@ rm -rf udp.sh
 rm -rf vpn.sh
 rm -rf openvpn.sh
 rm -rf log-install.txt
-rm -rf /usr/bin/usernew
-rm -rf /usr/bin/trial
 rm -rf /root/domain
 echo "\e[1;32m INSTALL SLOW DNS & UDP COSTUM... \e[0m"
 echo "\e[1;32m Proses Download Script Slowdns.. \e[0m"
@@ -20,8 +18,6 @@ sleep 1
 echo "\e[1;32m Proses Download Script OpenVPN.. \e[0m"
 wget https://raw.githubusercontent.com/hokagelegend2023/Lite/main/udp-custom/openvpn/openvpn.sh && chmod +x openvpn.sh && ./openvpn.sh
 sleep 1
-chmod +x /usr/bin/usernew
-chmod +x /usr/bin/trial
 rm -rf /root/udp
 mkdir -p /root/udp
 # install udp-custom
@@ -30,7 +26,7 @@ sleep 1
 echo "\e[1;32m Proses Download Script UdpCustom.. \e[0m"
 sleep 1
 clear
-echo "\e[1;32m Cecking Tool UdpCustom By Mardhex.. \e[0m"
+echo "\e[1;32m Cecking Tool UdpCustom .. \e[0m"
 sleep 1
 clear
 echo "\e[1;32m Succes Cecking Tool.. \e[0m"
