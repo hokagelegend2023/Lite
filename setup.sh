@@ -149,8 +149,8 @@ if [ ! -f "/etc/log-create-shadowsocks.log" ]; then
 echo "Log Shadowsocks Account " > /etc/log-create-shadowsocks.log
 fi
 history -c
-serverV=$( curl -sS https://raw.githubusercontent.com/givpn/AutoScriptXray/master/menu/versi  )
-echo $serverV > /opt/.ver
+serverV=$( curl -sS https://raw.githubusercontent.com/hokagelegend2023/ijinpremium/main/lite  )
+echo $serverV > /opt/lite
 aureb=$(cat /home/re_otm)
 b=11
 if [ $aureb -gt $b ]
