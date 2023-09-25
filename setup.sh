@@ -79,9 +79,9 @@ echo ""
 clear
 echo -e "$BBlue                     SETUP DOMAIN VPS     $NC"
 echo -e "$BYellow----------------------------------------------------------$NC"
-echo -e "$BGreen 2. Choose Your Own Domain / Gunakan Domain Sendiri $NC"
+echo -e "$BGreen MASUKAN SUBDOMAIN POINTING  $NC"
 echo -e "$BYellow----------------------------------------------------------$NC"
-read -rp "Enter Your Domain / masukan domain : " dom
+read -rp "Enter Your Domain / masukan subdomain : " dom
 echo "IP=$dom" > /var/lib/ipvps.conf
 echo "$dom" > /root/scdomain
 echo "$dom" > /etc/xray/scdomain
