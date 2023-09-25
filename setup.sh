@@ -79,9 +79,9 @@ echo ""
 clear
 echo -e "$BBlue                     SETUP DOMAIN VPS     $NC"
 echo -e "$BYellow----------------------------------------------------------$NC"
-echo -e "$BGreen MASUKAN SUBDOMAIN POINTING  $NC"
-echo -e "$BYellow----------------------------------------------------------$NC"
-read -rp "Enter Your Domain / masukan subdomain : " dom
+yellow "Add Domain for vmess/vless/trojan dll"
+echo " "
+read -rp "Input ur domain : " -e dom
 echo "IP=$dom" > /var/lib/ipvps.conf
 echo "$dom" > /root/scdomain
 echo "$dom" > /etc/xray/scdomain
