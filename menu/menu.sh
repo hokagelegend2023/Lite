@@ -1,5 +1,5 @@
 #!/bin/bash
-MYIP=$(curl -sS ifconfig.me)
+MYIP=$(curl -sS ipv4.icanhazip.com)
 echo "Checking VPS"
 clear
 # Color Validation
@@ -55,7 +55,7 @@ umon="$(vnstat -i eth0 -m | grep "`date +"%b '%y"`" | awk '{print $6" "substr ($
 tmon="$(vnstat -i eth0 -m | grep "`date +"%b '%y"`" | awk '{print $9" "substr ($10, 1, 1)}')"
 # user
 Exp2=$"Lifetime"
-Name=$"givpn"
+Name=$(curl -sS https://raw.githubusercontent.com/hokagelegend2023/ijinpremium/main/LiteIp | grep $MYIP | awk '{print $2}')
 # Getting CPU Information
 cpu_usage1="$(ps aux | awk 'BEGIN {sum=0} {sum+=$3}; END {print sum}')"
 cpu_usage="$((${cpu_usage1/\.*} / ${corediilik:-1}))"
@@ -74,6 +74,24 @@ freq=$( awk -F: ' /cpu MHz/ {freq=$2} END {print freq}' /proc/cpuinfo )
 tram=$( free -m | awk 'NR==2 {print $2}' )
 uram=$( free -m | awk 'NR==2 {print $3}' )
 fram=$( free -m | awk 'NR==2 {print $4}' )
+nginx=$( systemctl status nginx | grep Active | awk '{print $3}' | sed 's/(//g' | sed 's/)//g' )
+if [[ $nginx == "running" ]]; then
+    status_nginx="${GREEN}RUN${NC}"
+else
+    status_nginx="${RED}OFF${NC}"
+fi
+xray=$( systemctl status xray | grep Active | awk '{print $3}' | sed 's/(//g' | sed 's/)//g' )
+if [[ $xray == "running" ]]; then
+    status_xray="${GREEN}RUN${NC}"
+else
+    status_xray="${RED}OFF${NC}"
+fi
+ssh_ws=$( systemctl status ws-stunnel | grep Active | awk '{print $3}' | sed 's/(//g' | sed 's/)//g' )
+if [[ $ssh_ws == "running" ]]; then
+    status_ws="${GREEN}RUN${NC}"
+else
+    status_ws="${RED}OFF${NC}"
+fi
 clear 
 echo -e "\e[1;33m -------------------------------------------------\e[0m"
 echo -e "\e[1;34m                      VPS INFO                    \e[0m"
@@ -81,31 +99,27 @@ echo -e "\e[1;33m -------------------------------------------------\e[0m"
 echo -e "\e[1;32m OS            \e[0m: "`hostnamectl | grep "Operating System" | cut -d ' ' -f5-`	
 echo -e "\e[1;32m Uptime        \e[0m: $uptime"
 echo -e "\e[1;32m Public IP     \e[0m: $IPVPS"
+#echo -e "\e[1;32m ASN           \e[0m: $ISP"
 echo -e "\e[1;32m CITY          \e[0m: $CITY"
-#echo -e "\e[1;32m ASN          \e[0m: $ISP"
 echo -e "\e[1;32m DOMAIN        \e[0m: $domain"	
 echo -e "\e[1;32m DATE & TIME   \e[0m: $DATE2"
 echo -e "\e[1;33m -------------------------------------------------\e[0m"
-echo -e "\e[1;34m                      RAM INFO                    \e[0m"
+echo -e "\e[1;34m               STATUS INFO                        \e[0m"
 echo -e "\e[1;33m -------------------------------------------------\e[0m"
 echo -e ""
-echo -e "\e[1;32m RAM USED   \e[0m: $uram MB"	
-echo -e "\e[1;32m RAM TOTAL  \e[0m: $tram MB"
+echo -e "\e[0m RAM USED   \e[34m: $uram MB    | \e[0m NGINX   \e[34m: ${status_nginx}"	
+echo -e "\e[0m RAM TOTAL  \e[34m: $tram MB   | \e[0m XRAY    \e[34m: ${status_xray}"  
+echo -e "\e[34m                        | \e[0m SSH WS  \e[34m: ${status_ws}"
 echo -e ""
 echo -e "\e[1;33m -------------------------------------------------\e[0m"
 echo -e "\e[1;34m                       MENU                       \e[0m"
 echo -e "\e[1;33m -------------------------------------------------\e[0m"
 echo -e   ""
-echo -e "\e[1;36m 1 \e[0m: Menu SSH"
-echo -e "\e[1;36m 2 \e[0m: Menu Vmess"
-echo -e "\e[1;36m 3 \e[0m: Menu Vless"
-echo -e "\e[1;36m 4 \e[0m: Menu Trojan"
-echo -e "\e[1;36m 5 \e[0m: Menu Shadowsocks"
-echo -e "\e[1;36m 6 \e[0m: Menu Setting"
-echo -e "\e[1;36m 7 \e[0m: Status Service"
-echo -e "\e[1;36m 8 \e[0m: Clear RAM Cache"
-echo -e "\e[1;36m 9 \e[0m: Reboot VPS"
-echo -e "\e[1;36m x \e[0m: Exit Script"
+echo -e "\e[1;36m 1 \e[0m: Menu SSH                \e[1;36m 6 \e[0m: Menu Setting"
+echo -e "\e[1;36m 2 \e[0m: Menu Vmess              \e[1;36m 7 \e[0m: Status Service"
+echo -e "\e[1;36m 3 \e[0m: Menu Vless              \e[1;36m 8 \e[0m: Clear RAM Cache"
+echo -e "\e[1;36m 4 \e[0m: Menu Trojan             \e[1;36m 9 \e[0m: Reboot VPS"
+echo -e "\e[1;36m 5 \e[0m: Menu Shadowsocks        \e[1;36m x \e[0m: Exit Script"
 echo -e   ""
 echo -e "\e[1;33m -------------------------------------------------\e[0m"
 echo -e "\e[1;32m Client Name \e[0m: $Name"
