@@ -44,7 +44,7 @@ sleep 1
 echo "\e[1;32m Proses Download Script Config Default.. \e[0m"
 sleep 1
 clear
-echo "\e[1;32m Cecking Config Default By Mardhex.. \e[0m"
+echo "\e[1;32m Cecking Config Install.. \e[0m"
 sleep 1
 clear
 echo "\e[1;32m Succes Cecking Config Default Tool.. \e[0m"
